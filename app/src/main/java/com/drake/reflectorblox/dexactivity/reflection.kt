@@ -4,21 +4,27 @@ import java.lang.reflect.Field
 import java.lang.reflect.Method
 
 fun getField(clazz: Class<*>, name: String): Field? {
-    clazz.declaredFields.forEach {
-        if (it.name.equals(name)) {
+    try {
+        clazz.getField(name).let {
             if (!it.isAccessible) {
                 it.isAccessible = true
             }
             return it
         }
+    } catch (e: NoSuchFieldException) {
+        return null
     }
-    return null
 }
 
-fun getMethod(clazz: Class<*>, method: String, vararg parameterTypes: Class<*>): Method {
-    val classMethod = clazz.getDeclaredMethod(method, *parameterTypes)
-    if (!classMethod.isAccessible) {
-        classMethod.isAccessible = true
+fun getMethod(clazz: Class<*>, method: String, vararg parameterTypes: Class<*>): Method? {
+    try {
+        clazz.getMethod(method, *parameterTypes).let {
+            if (!it.isAccessible) {
+                it.isAccessible = true
+            }
+            return it
+        }
+    } catch (e: NoSuchMethodException) {
+        return null
     }
-    return classMethod
 }
