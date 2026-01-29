@@ -79,4 +79,5 @@ dependencies {
     implementation(libs.org.jetbrains.kotlin.plugin.serialization.gradle.plugin)
 
     implementation(libs.aliucord.hook)
+    implementation(libs.lsposed.hiddenapibypass)
 }

@@ -12,6 +12,7 @@ activityCompose = "1.12.2"
 composeBom = "2024.09.00"
 
 aliuhook = "1.1.4"
+lsposed-hiddenapibypass = "6.1"
 
 ktor3 = "3.3.3"
 serializationPlugin = "2.3.0"
@@ -42,7 +43,7 @@ ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-conte
 org-jetbrains-kotlin-plugin-serialization-gradle-plugin = { group = "org.jetbrains.kotlin.plugin.serialization", name = "org.jetbrains.kotlin.plugin.serialization.gradle.plugin", version.ref = "serializationPlugin"}
 
 aliucord-hook = { group = "com.aliucord", name = "Aliuhook", version.ref = "aliuhook" }
-
+lsposed-hiddenapibypass = { group = "org.lsposed.hiddenapibypass", name = "hiddenapibypass", version.ref = "lsposed-hiddenapibypass"}
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
