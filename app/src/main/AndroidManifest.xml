@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TestActivity" android:exported="false" />
+        <activity android:name=".TestActivity2" android:exported="false" />
     </application>
 
 </manifest>

@@ -4,18 +4,16 @@ import android.os.Bundle
 import com.drake.reflectorblox.dexactivity.DexBasedActivity
 import java.io.File
 
-class TestActivity : DexBasedActivity() {
+class TestActivity2 : DexBasedActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val filesDir = this.filesDir
         val apkFile = File(filesDir, "app-release.apk")
         apkFile.setReadOnly()
         apkPath = apkFile.absolutePath
         libPath = applicationContext.applicationInfo.nativeLibraryDir // TODO
-        activityClassName = "com.drake.testappforrobloxdex.MainActivity2"
+        activityClassName = "com.drake.testappforrobloxdex.MainActivity"
         applicationClassName = "com.drake.testappforrobloxdex.Application"
-        hookActivity("com.drake.testappforrobloxdex.MainActivity",
-            TestActivity2::class.java as Class<DexBasedActivity>
-        ) //wtf im doing
+
         super.onCreate(savedInstanceState)
     }
 }
