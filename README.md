@@ -9,3 +9,4 @@ also not production grade code!! (VIBE coded)
 
 ### ROADMAP
 - [ ] make it work
+- [ ] refactor everythibg
