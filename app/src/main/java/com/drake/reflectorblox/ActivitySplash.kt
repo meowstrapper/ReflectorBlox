@@ -1,21 +1,15 @@
 package com.drake.reflectorblox
 
 import android.os.Bundle
-import com.drake.reflectorblox.dexactivity.DexBasedActivity
-import java.io.File
+import com.drake.reflectorblox.robloxactivity.RobloxActivity
 
-class TestActivity : DexBasedActivity() {
+class ActivitySplash : RobloxActivity() {
+    override val activityClassName = "com.roblox.client.ActivitySplash"
+    override val activityRedirections = mapOf(
+        "com.roblox.client.ActivityNativeMain" to (ActivityNativeMain::class.java as Class<RobloxActivity>)
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        val filesDir = this.filesDir
-        val apkFile = File(filesDir, "base.apk")
-        apkFile.setReadOnly()
-        apkPath = apkFile.absolutePath
-        libPath = File(filesDir, "robloxlibs").absolutePath //applicationContext.applicationInfo.nativeLibraryDir // TODO
-        activityClassName = "com.roblox.client.ActivitySplash"
-        applicationClassName = "com.roblox.client.RobloxApplication"
-        hookActivity("com.roblox.client.ActivityNativeMain",
-            TestActivity2::class.java as Class<DexBasedActivity>
-        ) //wtf im doing
         super.onCreate(savedInstanceState)
     }
 }

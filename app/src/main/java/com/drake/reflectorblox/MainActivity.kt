@@ -25,7 +25,6 @@ import com.drake.reflectorblox.ui.theme.ReflectorBloxTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
-import java.io.FileOutputStream
 
 class MainActivity : ComponentActivity() {
     lateinit var robloxHandler: RobloxRepository
@@ -76,16 +75,16 @@ class MainActivity : ComponentActivity() {
 //                                val intent = Intent(this@MainActivity, RobloxActivity::class.java)
 //                                startActivity(intent)
                                 scope.launch(Dispatchers.IO) {
-                                    val filesDir = this@MainActivity.filesDir
-                                    if (!File(filesDir, "app-release.apk").exists()) {
-                                        val assetManager = this@MainActivity.assets
-                                        assetManager.open("app-release.apk").use { inputStream ->
-                                            FileOutputStream(File(filesDir, "app-release.apk")).use { outputStream ->
-                                                inputStream.copyTo(outputStream)
-                                            }
-                                        }
-                                    }
-                                    val intent = Intent(this@MainActivity, TestActivity::class.java)
+//                                    val filesDir = this@MainActivity.filesDir
+//                                    if (!File(filesDir, "app-release.apk").exists()) {
+//                                        val assetManager = this@MainActivity.assets
+//                                        assetManager.open("app-release.apk").use { inputStream ->
+//                                            FileOutputStream(File(filesDir, "app-release.apk")).use { outputStream ->
+//                                                inputStream.copyTo(outputStream)
+//                                            }
+//                                        }
+//                                    }
+                                    val intent = Intent(this@MainActivity, ActivitySplash::class.java)
                                     this@MainActivity.startActivity(intent)
                                     
                                 }
