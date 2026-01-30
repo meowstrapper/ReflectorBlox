@@ -7,12 +7,12 @@ import java.io.File
 class TestActivity2 : DexBasedActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val filesDir = this.filesDir
-        val apkFile = File(filesDir, "app-release.apk")
+        val apkFile = File(filesDir, "base.apk")
         apkFile.setReadOnly()
         apkPath = apkFile.absolutePath
-        libPath = applicationContext.applicationInfo.nativeLibraryDir // TODO
-        activityClassName = "com.drake.testappforrobloxdex.MainActivity"
-        applicationClassName = "com.drake.testappforrobloxdex.Application"
+        libPath = File(filesDir, "robloxlibs").absolutePath //applicationContext.applicationInfo.nativeLibraryDir // TODO
+        activityClassName = "com.roblox.client.ActivityNativeMain"
+        applicationClassName = "com.roblox.client.RobloxApplication"
 
         super.onCreate(savedInstanceState)
     }
