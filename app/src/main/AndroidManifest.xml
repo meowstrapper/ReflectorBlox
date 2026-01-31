@@ -104,6 +104,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".TestAppActivity" android:exported="true" />
+        <activity android:name=".TestAppActivityMeow" android:exported="true" />
         <activity android:name=".ActivitySplash" android:exported="true" />
         <activity
             android:name=".ActivityNativeMain"
