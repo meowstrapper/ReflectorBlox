@@ -130,6 +130,7 @@ abstract class RobloxActivity : Activity() {
                         if (activityRedirections.contains(activityClassName)) {
                             val redirectTo = activityRedirections[activityClassName]!!
                             Log.d(TAG, "Redirecting $activityClassName to ${redirectTo.name}")
+                            param.args[0] = this@RobloxActivity
                             param.args[1] = redirectTo
                         }
                     }
@@ -260,7 +261,7 @@ abstract class RobloxActivity : Activity() {
             override fun getApplicationInfo(): ApplicationInfo = applicationInfo
             override fun getAssets(): AssetManager = assetManager
             override fun getClassLoader(): ClassLoader = dexClassLoader
-            //override fun getPackageName(): String = appPackageName // TODO: Fix startActivity looking at the overwritten package name instead of the app's one
+            override fun getPackageName(): String = appPackageName
             override fun getResources(): Resources = pluginResources
         }
     }
