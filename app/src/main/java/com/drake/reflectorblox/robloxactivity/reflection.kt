@@ -7,14 +7,14 @@ import java.lang.reflect.Method
 fun getFields(
     clazz: Class<*>,
     isDeclared: Boolean = true
-): List<Field> {
+): Array<Field> {
     return (if (isDeclared) {
         clazz.declaredFields
     } else {
         clazz.fields
-    }).toList().apply {
-        this.forEach { field ->
-            field.isAccessible = true
+    }).apply {
+        this.forEach {
+            it.isAccessible = true
         }
     }
 }
