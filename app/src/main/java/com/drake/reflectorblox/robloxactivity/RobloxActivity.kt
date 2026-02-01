@@ -17,6 +17,7 @@ import androidx.annotation.CallSuper
 import dalvik.system.BaseDexClassLoader
 import dalvik.system.DexClassLoader
 import de.robv.android.xposed.XC_MethodHook
+import de.robv.android.xposed.XC_MethodReplacement
 import de.robv.android.xposed.XposedBridge
 import org.lsposed.hiddenapibypass.HiddenApiBypass
 import java.io.File
@@ -214,6 +215,26 @@ abstract class RobloxActivity : Activity() {
                     }
                 }
             })
+
+            Log.d(TAG, "Disabling Roblox's Crashpad Handler")
+            try {
+                XposedBridge.hookMethod(
+                    dexClassLoader.loadClass("com.roblox.client.analytics.CrashpadHandler")
+                        .getDeclaredMethod("main", Array<String>::class.java),
+                    object : XC_MethodReplacement() {
+                        override fun replaceHookedMethod(param: MethodHookParam): Any? {
+                            Log.d(TAG, "son im crine 😭")
+                            return null
+                        }
+
+                    }
+                )
+            } catch (e: NoSuchMethodException) {
+                Log.d(TAG, "Roblox's CrashpadHandler method was not found. $e")
+            } catch (e: Exception) {
+                Log.d(TAG, "Something went wrong while trying to hook the CrashpadHandler: $e")
+            }
+
             Log.d(TAG, "Initializing activity")
             activityClass = dexClassLoader.loadClass(activityClassName) as Class<Activity>
             activityInitializedClass = getConstructor(activityClass).newInstance() as Activity
