@@ -9,4 +9,4 @@ also not production grade code!! (VIBE coded)
 
 ### ROADMAP
 - [ ] make it work
-- [ ] refactor everythibg
+- [ ] make roblox libloader.so not sigsegv my ass
