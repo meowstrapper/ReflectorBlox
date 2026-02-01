@@ -49,6 +49,8 @@ class MainActivity : ComponentActivity() {
                         var downloadingRobloxAPK by remember { mutableStateOf(false) }
                         var textStatus by remember { mutableStateOf("click to download roblox apk") }
 
+                        val filesDir = this@MainActivity.filesDir
+
                         Text(textStatus)
 
                         Button(
@@ -73,24 +75,39 @@ class MainActivity : ComponentActivity() {
 
                         Button(
                             onClick = {
-//                                val intent = Intent(this@MainActivity, RobloxActivity::class.java)
-//                                startActivity(intent)
                                 scope.launch(Dispatchers.IO) {
-                                    val filesDir = this@MainActivity.filesDir
                                     if (!File(filesDir, "test.apk").exists()) {
                                         val assetManager = this@MainActivity.assets
                                         assetManager.open("app-release.apk").use { inputStream ->
-                                            FileOutputStream(File(filesDir, "test.apk")).use { outputStream ->
+                                            FileOutputStream(
+                                                File(
+                                                    filesDir,
+                                                    "test.apk"
+                                                )
+                                            ).use { outputStream ->
                                                 inputStream.copyTo(outputStream)
                                             }
                                         }
                                     }
-                                    val intent = Intent(this@MainActivity, TestAppActivity::class.java)
+                                    val intent =
+                                        Intent(this@MainActivity, TestAppActivity::class.java)
                                     this@MainActivity.startActivity(intent)
-                                    
+
                                 }
                             }
                         ) { Text("Launch Test APK") }
+
+                        Button(
+                            onClick = {
+                                if (!File(filesDir, "roblox.apk").exists()) {
+                                    textStatus = "download rolbosx first!!11!!1"
+                                } else {
+                                    val intent =
+                                        Intent(this@MainActivity, ActivitySplash::class.java)
+                                    this@MainActivity.startActivity(intent)
+                                }
+                            }
+                        ) { Text("Launch Roblox") }
                     }
                 }
             }

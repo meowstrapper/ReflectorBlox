@@ -8,8 +8,4 @@ class ActivitySplash : RobloxActivity() {
     override val activityRedirections = mapOf(
         "com.roblox.client.ActivityNativeMain" to (ActivityNativeMain::class.java as Class<RobloxActivity>)
     )
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 }
